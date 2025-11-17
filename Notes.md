@@ -13,6 +13,8 @@
 - TypeScript is a syntactic superset of JavaScript which adds **static typing**.
 - It means that TypeScript adds syntax on top of JavaScript, allowing developers to add **types**.
 - "Syntactic Superset" means that it shares the same base syntax as JavaScript, but adds something to it.
+- **What is the main benefit of using TypeScript over JavaScript?**
+  - Static type-checking
 
 ### Why should I use TypeScript?
 
@@ -47,7 +49,7 @@
     npm install typescript --save-dev
 ```
 
-- It will create a `package.json` file which has typeScript as devDependence
+- It will create a `package.json` file which has **typeScript** as **devDependence**
 
 ```json
 // package.json
@@ -60,7 +62,7 @@
 
 and `package-lock.json` file and a `node_modules` directry.
 
-- Now compiler is installed in the `node_modules` directly and can be run with `npx tsc`
+- Now compiler is installed in the `node_modules` directory and can be run with `npx tsc`
 - `tsc` stands for The TypeScript Compiler, current version : `Version 5.8.3`
 - `npx` stands for Node Package executer it basically execute the packages(TypeScript in this case)
 
@@ -144,6 +146,7 @@ You can learn more at https://aka.ms/tsconfig.json
 ```
 
 - You can open the file in an editor to add those options. This will configure the TypeScript compiler to transpile TypeScript files located in the `src/` directory of your project, into JavaScript files in the `build/` directory.
+- Keep `.ts` files in src run `npx tsc` at you project not at `src` folder.
 
 - This is one way to quickly get started with TypeScript. There are many other options available such as a `create-react-app` template, a `node starter project`, and a `webpack plugin`.
 
@@ -189,3 +192,81 @@ tsc --init
 | --------------------------- | --------- | ------------ |
 | `npm install typescript`    | `npx tsc` | Project only |
 | `npm install -g typescript` | `tsc`     | System-wide  |
+
+
+# TypeScript Simple Types
+- TypeScript enhances JavaScript by adding static types.
+
+## JavaScript and TypeScript Primitives
+- The most basic types in TypeScript are called **primitives**.
+- These types form the building blocks of more complex types in your applications.
+- TypeScript includes all JavaScript primitives plus additional type features.
+- Here are the five primitive types :
+  - Boolean 
+  - Number
+  - String
+  - BigInt(ES2020+)
+  - Symbol
+
+### Boolean 
+- Represent `true` or `false`.
+- Used for flag, toggles, and conditions.
+
+```ts
+let isActive: boolean = true;
+let hasPermission = false; // TypeScript infers 'boolean' type
+```
+
+### Number
+- Represents both integers and floating-point numbers.
+- TypeScript uses the same number type for all numeric values.
+
+```ts
+let decimal: number = 6;
+let hex: number = 0xf00d; // Hexadecimal
+let binary: number = 0b1010; // Binary
+let octal: number = 0o744; // Octal
+let float: number = 3.14; // Floating Point
+
+console.log(decimal);
+// 0x : prefix for Hexadecimal
+// 0b : prefix for Binary
+// 0o : prefix for Octal
+```
+
+### String
+- Represent text data.
+- Can use single quotes `(')`, double quotes `(")`, or backticks **(`)** for template literals.
+
+```ts
+let color: string = "blue";
+let fullName: string = 'John Doe';
+let age: number = 30;
+let sentence: string = `Hello, my name is ${fullname} and I'll be ${age + 1} next year.`
+
+console.log(color);
+console.log(fullname);
+console.log(age);
+console.log(sentence);
+```
+### BigInt (ES2020+)
+- Represents whole numbers larger than 253 - 1.
+- Use the `n` suffix to create a bigint.
+
+```ts
+const bigNumber: bigint = 9007199254740991n;
+const hugeNumber = BigInt(9007199254740991); // Alternative syntax
+```
+- To use `BigInt` goto `tsconfig.json` ans change `"target": "es2016", ` to `    "target": "ES2020", `.
+
+### Symbol
+- Creaates unique identifiers.
+- Useful for creating unique property keys and constants.
+
+```ts
+const uniqueKey: symbol = Symbol('description');
+const obj = {
+  [uniqueKey]: 'This is a unique property'
+};
+console.log(obj[uniqueKey]); // "This is a unique property"
+```
